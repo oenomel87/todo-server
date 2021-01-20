@@ -14,8 +14,8 @@ import java.time.LocalDate;
 
 @ActiveProfiles("local")
 @Transactional
-@SpringBootTest
 @ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TaskRepositoryTests {
 
     @Autowired

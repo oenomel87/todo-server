@@ -1,11 +1,9 @@
 package io.oenomel.todo.task;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -20,22 +18,24 @@ public class Task implements Serializable {
 
     private String name;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDate dueDate;
+    private TaskStatus status;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private LocalDateTime createdAt;
+    private String dueDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private LocalDateTime updatedAt;
+    private String createdAt;
+
+    private String updatedAt;
 
     public static Task convert(TaskEntity e) {
+        var dueDate = e.getDueDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        var datetimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return Task.builder()
                 .id(e.getId())
                 .name(e.getName())
-                .dueDate(e.getDueDate())
-                .createdAt(e.getCreatedAt())
-                .updatedAt(e.getUpdatedAt())
+                .status(e.getStatus())
+                .dueDate(dueDate)
+                .createdAt(e.getCreatedAt().format(datetimeFormat))
+                .updatedAt(e.getUpdatedAt().format(datetimeFormat))
                 .build();
     }
 }

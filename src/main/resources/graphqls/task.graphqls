@@ -1,0 +1,40 @@
+type Task {
+    id: ID!
+    name: String!
+    status: TaskStatus!
+    dueDate: String
+    createdAt: String
+    updatedAt: String
+}
+
+enum TaskStatus {
+    WAIT
+    DOING
+    DONE
+}
+
+type Query {
+    tasks(
+        name: String
+        status: TaskStatus
+        dueDate: String
+    ) : [Task]
+
+    task(id: ID!) : Task
+}
+
+type Mutation {
+    saveTask(task: TaskInput!) : Task!
+
+    changeTaskStatus(
+        id: ID!
+        status: TaskStatus!
+    ) : Task!
+}
+
+input TaskInput {
+    id: ID
+    name: String!
+    status: TaskStatus
+    dueDate: String
+}
