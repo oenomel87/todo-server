@@ -26,7 +26,6 @@ public class Query implements GraphQLQueryResolver {
     }
 
     public Task task(Long id) {
-        var criteria = TaskCriteria.builder().id(id).build();
-        return null;
+        return this.taskService.findTask(id);
     }
 }
