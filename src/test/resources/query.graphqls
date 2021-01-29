@@ -1,0 +1,6 @@
+query {
+    tasks {
+        name
+        dueDate
+    }
+}
