@@ -35,6 +35,7 @@ public class TaskService {
                     .name(taskInput.getName())
                     .dueDate(dueDate)
                     .status(taskInput.getStatus())
+                    .parentTaskId(taskInput.getParentTask())
                     .build()
                 : this.taskRepository.findById(taskInput.getId()).orElse(null);
 
@@ -54,5 +55,10 @@ public class TaskService {
         task.setStatus(status);
         this.taskRepository.save(task);
         return Task.convert(task);
+    }
+
+    public List<Task> getSubTasks(Task parentTask) {
+        var subTasks = this.taskRepository.findByParentTaskId(parentTask.getId());
+        return subTasks.stream().map(Task::convert).collect(Collectors.toList());
     }
 }

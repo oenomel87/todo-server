@@ -39,4 +39,7 @@ public class TaskEntity implements Serializable {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @Column(name = "parent_task_id")
+    private Long parentTaskId;
 }

@@ -20,4 +20,6 @@ public class TaskInput implements Serializable {
     private TaskStatus status;
 
     private String dueDate;
+
+    private Long parentTask;
 }

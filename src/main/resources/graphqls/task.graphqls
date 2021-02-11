@@ -5,6 +5,7 @@ type Task {
     dueDate: String
     createdAt: String
     updatedAt: String
+    subTasks: [Task]
 }
 
 enum TaskStatus {
@@ -37,4 +38,5 @@ input TaskInput {
     name: String!
     status: TaskStatus
     dueDate: String
+    parentTask: Int
 }
