@@ -1,20 +1,18 @@
 package io.oenomel.todo.task;
 
+import io.oenomel.todo.config.QuerydslConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @ActiveProfiles("local")
-@Transactional
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Import(QuerydslConfiguration.class)
+@DataJpaTest
 class TaskRepositoryTests {
 
     @Autowired

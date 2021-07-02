@@ -1,0 +1,10 @@
+mutation saveTask {
+  saveTask(task: {
+      name: "Sample1",
+      status: WAIT,
+      dueDate: "2021-08-15"
+    }) {
+    id
+    name
+  }
+}

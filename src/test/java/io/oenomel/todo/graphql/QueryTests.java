@@ -26,4 +26,10 @@ class QueryTests {
         var response = this.graphQLTestTemplate.postForResource("query.graphqls");
         Assertions.assertFalse(response.readTree().get("data").get("tasks").isNull());
     }
+
+    @Test
+    void mutationTest() throws IOException {
+        var response = this.graphQLTestTemplate.postForResource("mutation.graphqls");
+        Assertions.assertFalse(response.readTree().get("data").get("saveTask").isNull());
+    }
 }
