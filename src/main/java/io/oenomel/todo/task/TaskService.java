@@ -29,7 +29,8 @@ public class TaskService {
     }
 
     public Task saveTask(TaskInput taskInput) {
-        var dueDate = LocalDate.parse(taskInput.getDueDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        var dueDate = taskInput.getDueDate() == null ? null
+                : LocalDate.parse(taskInput.getDueDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         var entity = taskInput.getId() == null ?
                 TaskEntity.builder()
                     .name(taskInput.getName())
